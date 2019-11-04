@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,7 +24,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4!$nrki#%43zkxug1eshl)2%!d9fbekto$(nq%38%o(jxyg@31'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if not "PRODUCTION" in os.environ:
+    DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -133,3 +135,7 @@ WEBPACK_LOADER = {
         'STATS_FILE': os.path.join(BASE_DIR, '..', 'webpack-stats.json'),
         }
     }
+
+if "DATABASE" in os.environ:
+    DATABASES['default'] =\
+            dj_database_url.config(conn_max_age=600, ssl_require=True)

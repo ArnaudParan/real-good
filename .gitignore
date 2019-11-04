@@ -387,3 +387,5 @@ $RECYCLE.BIN/
 
 /collected_static
 /static
+webpack-stats.json
+/venv

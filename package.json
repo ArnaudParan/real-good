@@ -1,21 +1,23 @@
 {
   "name": "real-good",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "The real good web app",
+  "repository": "github:ArnaudParan/real-good",
+  "main": "",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "venv/bin/pip install -r requirements.txt && venv/bin/python real_good/manage.py runserver & webpack --config webpack.dev.config.js --watch",
+    "build": "webpack --config webpack.prod.config.js"
   },
-  "author": "",
+  "author": "Arnaud Paran",
   "license": "",
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
-    "core-js": "^3.3.6",
     "react": "^16.11.0",
-    "regenerator-runtime": "^0.13.3",
+    "ts-loader": "^6.2.1",
     "webpack": "^4.41.2",
     "webpack-bundle-tracker": "^0.4.3",
     "webpack-cli": "^3.3.10"
