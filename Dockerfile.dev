@@ -20,4 +20,4 @@ RUN cd /srv && python real_good/manage.py collectstatic --noinput
 RUN cd /srv && python real_good/manage.py makemigrations --noinput
 EXPOSE 80
 #CMD ["python", "/srv/real_good/manage.py", "runserver", "0.0.0.0:80"]
-CMD ["uwsgi", "--chdir", "/srv/real_good", "--module", "real_good.wsgi:application", "--http-socket", "0.0.0.0:80", "--route", "^/static/(.*) static:/srv/collected_static/$1"]
+CMD ["uwsgi", "--chdir", "/srv/real_good", "--module", "real_good.wsgi:application", "--http-socket", "0.0.0.0:80", "--static-map", "/static=../collected_static"]
