@@ -24,7 +24,7 @@ module.exports = options => {
     },
 
     plugins: [
-      new BundleTracker({filename: ROOT_DIR + '/webpack-stats.json'}),
+      new BundleTracker({filename: '/webpack-stats.json'}),
     ],
     module: {
       rules: [

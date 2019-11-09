@@ -27,7 +27,7 @@ SECRET_KEY = '4!$nrki#%43zkxug1eshl)2%!d9fbekto$(nq%38%o(jxyg@31'
 if not "PRODUCTION" in os.environ:
     DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["real-good.herokuapp.com"]
 
 
 # Application definition
