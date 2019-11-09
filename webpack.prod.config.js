@@ -51,7 +51,8 @@ module.exports = options => {
       extensions: ['.js', '.jsx']
     },
     externals: {
-      googleMaps: "window.google"
+      google: "window.google",
+      FB: "window.FB"
     }
 
   };

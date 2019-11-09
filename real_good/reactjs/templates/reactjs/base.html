@@ -4,6 +4,11 @@
 <head>
 <title>Real Good</title>
 </head>
+{% if PRODUCTION %}
+<script src="https://connect.facebook.net/en_US/sdk.js"></script>
+{% else %}
+<script src="https://connect.facebook.net/en_US/sdk/debug.js"></script>
+{% endif %}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7iOYZSV842NB2AklV3GAz0COTPep60YU"></script>
 <body>
   {% block content %}

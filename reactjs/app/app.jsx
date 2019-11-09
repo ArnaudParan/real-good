@@ -5,7 +5,9 @@ import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import { blue } from '@material-ui/core/colors';
-import google from "googleMaps"
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import google from "google"
+import FB from "FB"
 
 
 const styles = theme => {
@@ -31,6 +33,13 @@ const styles = theme => {
     }
   }
 }
+
+// const FbLoginButtion = withStyles(styles)(props => {
+//   return (<fb:login-button
+//     scope="public_profile,email"
+//     onlogin="checkLoginState();">
+//     </fb:login-button>)
+// });
 
 const LoginDialog = withStyles(styles)(props => {
   const { classes, onClose, open } = props
@@ -82,12 +91,38 @@ class GoogleMapBackground extends React.Component {
 
 GoogleMapBackground = withStyles(styles)(GoogleMapBackground)
 
-function App() {
+function Home() {
   const [open, setOpen] = React.useState(false)
   const handleClickOpen = () => { setOpen(true) }
   const handleClose = () => { setOpen(false) }
   return <div><GoogleMapBackground /><LoginDialog onClose={handleClose} open={open} /></div>
 }
 
+const Privacy = withStyles(styles)(props => {
+  return <div><h1>Privacy</h1></div>
+})
+
+function App() {
+  return (
+  <Router>
+    <Switch>
+      <Route path="/privacy/">
+        <Privacy />
+      </Route>
+      <Route path="/">
+        <Home />
+      </Route>
+    </Switch>
+  </Router>
+  )
+}
+
+FB.init({
+  appId: '408614803152493',
+  autoLogAppEvents: true,
+  xfbml: true,
+  version: 'v5.0'
+});
+
 const root = document.querySelector('#app')
-ReactDOM.render(<App />, root)
+ReactDOM.render(<App />, root);
