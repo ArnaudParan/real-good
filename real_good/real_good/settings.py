@@ -23,11 +23,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '4!$nrki#%43zkxug1eshl)2%!d9fbekto$(nq%38%o(jxyg@31'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-if not "PRODUCTION" in os.environ:
-    DEBUG = True
+if 'SECRET_KEY' in os.environ:
+    SECRET_KEY = os.environ['SECRET_KEY']
 
-ALLOWED_HOSTS = ["real-good.herokuapp.com"]
+# SECURITY WARNING: don't run with debug turned on in production!
+if 'PRODUCTION' in os.environ:
+    DEBUG = False
+    ALLOWED_HOSTS = ['real-good.herokuapp.com']
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -51,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'real_good.urls'
@@ -136,6 +142,6 @@ WEBPACK_LOADER = {
         }
     }
 
-if "DATABASE" in os.environ:
+if 'DATABASE' in os.environ:
     DATABASES['default'] =\
             dj_database_url.config(conn_max_age=600, ssl_require=True)

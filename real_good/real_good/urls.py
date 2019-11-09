@@ -20,4 +20,4 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('reactjs/', include('reactjs.urls')),
     path('admin/', admin.site.urls),
-] + staticfiles_urlpatterns()
+]
